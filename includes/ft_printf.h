@@ -6,7 +6,7 @@
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 13:57:41 by msteffen          #+#    #+#             */
-/*   Updated: 2018/01/11 11:58:05 by msteffen         ###   ########.fr       */
+/*   Updated: 2018/01/11 17:26:34 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,7 @@
 # include "ft_flags.h"
 
 int	ft_printf(const char *format, ...);
+int ft_printf_fd(int fd, const char *format, ...);
+int	ft_printf_tofd(const char *format, int fd, va_list *args);
 
 #endif

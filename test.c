@@ -9,9 +9,9 @@ int main()
 	int pointer = 42;
 
 	int ft, og;
-	og =    printf("{%c}", '\0');
+	og =    printf("|%5.x %5.0x|", 0, 0);
 	printf("\n");
-	ft = ft_printf("{%c}", '\0');
+	ft = ft_printf("|%5.x %5.0x|", 0, 0);
 	printf("\n");
 
 	printf("OG = %d; FT = %d\n", og, ft);
