@@ -1,0 +1,42 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_flags.h                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/01/09 14:08:03 by msteffen          #+#    #+#             */
+/*   Updated: 2018/01/09 14:17:11 by msteffen         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef FT_PFFLAGS_H
+# define FT_PFFLAGS_H
+
+# include "libft.h"
+
+typedef struct	s_flags
+{
+	int hash;
+	int zero;
+	int dash;
+	int plus;
+	int space;
+	int width;
+	int precision;
+	int j;
+	int z;
+	int hh;
+	int h;
+	int l;
+	int ll;
+	char *printf_buffer;
+}				t_flags;
+
+void			ft_init_flags(t_flags *flags);
+int				ft_parse_flags_length(const char *str, t_flags *flags);
+int				ft_parse_flags_fieldprecision(const char *str, t_flags *flags);
+int				ft_parse_flags_flags(const char *str, t_flags *flags);
+int				ft_parse_flags(const char *str, t_flags *flags);
+
+#endif
