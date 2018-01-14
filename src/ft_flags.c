@@ -6,7 +6,7 @@
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 14:09:24 by msteffen          #+#    #+#             */
-/*   Updated: 2018/01/11 12:14:15 by msteffen         ###   ########.fr       */
+/*   Updated: 2018/01/12 11:43:02 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,6 @@ int		ft_parse_flags(const char *str, t_flags *flags)
 	i += ft_parse_flags_flags(str, flags);
 	i += ft_parse_flags_fieldprecision(str + i, flags);
 	i += ft_parse_flags_length(str + i, flags);
-
 
 /*
 	printf("=======\n");

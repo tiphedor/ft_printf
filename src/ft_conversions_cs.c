@@ -6,7 +6,7 @@
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 12:26:29 by msteffen          #+#    #+#             */
-/*   Updated: 2018/01/11 17:25:38 by msteffen         ###   ########.fr       */
+/*   Updated: 2018/01/12 16:09:29 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@ int ft_conversion_c(t_flags *flags, va_list *args, t_buffer *buffer)
 	if (flags->l)
 		return (ft_conversion_cc(flags, args, buffer));
 	c = va_arg(*args, int);
-	if (flags->width > 1)
+	if (!flags->dash && flags->width > 1)
 		ft_buffer_putnchar(buffer, ' ', flags->width - 1);
 	ft_buffer_putchar(buffer, c);
-	(void)flags;
+	if (flags->dash && flags->width > 1)
+		ft_buffer_putnchar(buffer, ' ', flags->width - 1);
 	return (1);
 }
 

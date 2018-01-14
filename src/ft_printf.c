@@ -6,7 +6,7 @@
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 13:58:21 by msteffen          #+#    #+#             */
-/*   Updated: 2018/01/11 17:29:15 by msteffen         ###   ########.fr       */
+/*   Updated: 2018/01/12 16:26:27 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int ft_printf(const char *format, ...)
 int ft_printf_fd(int fd, const char *format, ...)
 {
 	va_list			args;
-	
+
 	va_start(args, format);
 	return (ft_printf_tofd(format, fd, &args));
 }
@@ -54,7 +54,12 @@ int	ft_printf_tofd(const char *format, int fd, va_list *args)
 			ft_buffer_putchar(buffer, format[i]);
 		i++;
 	}
-	ft_putstr_fd(buffer->buffer_str, fd);
+	(void)fd;
+	i = 0;
+	while ((int)i < (int)buffer->len) {
+		ft_putchar_fd(buffer->buffer_str[i], fd);
+		i++;
+	}
 	int a = buffer->len;
 	free(buffer->buffer_str);
 	free(buffer);

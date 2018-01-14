@@ -6,7 +6,7 @@
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 12:05:12 by msteffen          #+#    #+#             */
-/*   Updated: 2018/01/11 16:45:19 by msteffen         ###   ########.fr       */
+/*   Updated: 2018/01/12 12:21:27 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,14 @@ int ft_conversion_d(t_flags *flags, va_list *args, t_buffer *buffer)
 		nb_spaces -= nb_zeros;
 	if (nb_zeros < 0)
 		nb_zeros = 0;
-	if (flags->zero)
+	if (flags->zero && flags->precision == -1)
 	{
 		nb_zeros += nb_spaces;
 		nb_spaces = 0;
 	}
-	ft_buffer_putnchar(buffer, ' ', nb_spaces);
+
+	if(!flags->dash)
+		ft_buffer_putnchar(buffer, ' ', nb_spaces);
 	if (negative)
 		ft_buffer_putchar(buffer, '-');
 	if (flags->plus && nb >= 0)
@@ -53,6 +55,8 @@ int ft_conversion_d(t_flags *flags, va_list *args, t_buffer *buffer)
 	ft_buffer_putnchar(buffer, '0', nb_zeros);
 	if (flags->precision != 0 || nb != 0)
 		ft_buffer_putstr(buffer, nb_str);
+	if(flags->dash)
+		ft_buffer_putnchar(buffer, ' ', nb_spaces);
 	free(nb_str);
 	return (1);
 }
@@ -83,15 +87,18 @@ int ft_conversion_u(t_flags *flags, va_list *args, t_buffer *buffer)
 	if (nb_zeros > 0)
 		nb_spaces -= nb_zeros;
 	nb_zeros = (nb_zeros < 0) ? 0 : nb_zeros;
-	if (flags->zero)
+	if (flags->zero && flags->precision == -1)
 	{
 		nb_zeros += nb_spaces;
 		nb_spaces = 0;
 	}
-	ft_buffer_putnchar(buffer, ' ', nb_spaces);
+	if(!flags->dash)
+		ft_buffer_putnchar(buffer, ' ', nb_spaces);
 	ft_buffer_putnchar(buffer, '0', nb_zeros);
 	if (flags->precision != 0 || nb != 0)
 		ft_buffer_putstr(buffer, nb_str);
+	if(flags->dash)
+		ft_buffer_putnchar(buffer, ' ', nb_spaces);
 	free(nb_str);
 	return (1);
 }

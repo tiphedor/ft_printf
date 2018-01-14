@@ -6,7 +6,7 @@
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 12:20:51 by msteffen          #+#    #+#             */
-/*   Updated: 2018/01/11 15:47:45 by msteffen         ###   ########.fr       */
+/*   Updated: 2018/01/12 12:41:13 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,23 +22,37 @@ int ft_conversion_x(t_flags *flags, va_list *args, t_buffer *buffer)
 	nb = ft_cast_unsigned(flags, args);
 	nb_str = ft_itoau64_base(nb, "0123456789abcdef");
 	nb_zeros = flags->precision - ft_strlen(nb_str);
-	nb_spaces = flags->width - ft_strlen(nb_str) - (flags->hash) - (flags->hash);
-	if (nb_zeros > 0)
-		nb_spaces -= nb_zeros;
-	nb_zeros = (nb_zeros < 0) ? 0 : nb_zeros;
-	if (flags->zero)
+	if (nb_zeros < 0)
+		nb_zeros = 0;
+	nb_spaces = flags->width - ft_strlen(nb_str) - nb_zeros;
+
+
+	if (flags->dash)
 	{
-		nb_zeros += nb_spaces;
-		nb_spaces = 0;
+		ft_buffer_putnchar(buffer, '0', nb_zeros);
+		if (nb != 0 || flags->precision != 0)
+			ft_buffer_putstr(buffer, nb_str);
+		if (flags->hash && nb != 0)
+		{
+			ft_buffer_putnchar(buffer, (flags->zero && flags->precision == -1) ? '0' : ' ', nb_spaces - 2);
+			ft_buffer_putstr(buffer, "0x");
+		}
+		else
+			ft_buffer_putnchar(buffer, (flags->zero && flags->precision == -1) ? '0' : ' ', nb_spaces);
 	}
-	ft_buffer_putnchar(buffer, ' ', nb_spaces);
-	if (flags->hash && nb != 0)
+	else
 	{
-		ft_buffer_putstr(buffer, "0x");
+		if (flags->hash && nb != 0)
+		{
+			ft_buffer_putstr(buffer, "0x");
+			ft_buffer_putnchar(buffer, (flags->zero && flags->precision == -1) ? '0' : ' ', nb_spaces - 2);
+		}
+		else
+			ft_buffer_putnchar(buffer, (flags->zero && flags->precision == -1) ? '0' : ' ', nb_spaces);
+		ft_buffer_putnchar(buffer, '0', nb_zeros);
+		if (nb != 0 || flags->precision != 0)
+			ft_buffer_putstr(buffer, nb_str);
 	}
-	ft_buffer_putnchar(buffer, '0', nb_zeros);
-	if (flags->precision != 0 || nb != 0)
-		ft_buffer_putstr(buffer, nb_str);
 	return (1);
 }
 
@@ -52,21 +66,37 @@ int ft_conversion_cx(t_flags *flags, va_list *args, t_buffer *buffer)
 	nb = ft_cast_unsigned(flags, args);
 	nb_str = ft_itoau64_base(nb, "0123456789ABCDEF");
 	nb_zeros = flags->precision - ft_strlen(nb_str);
-	nb_spaces = flags->width - ft_strlen(nb_str) - (flags->hash) - (flags->hash);
-	if (nb_zeros > 0)
-		nb_spaces -= nb_zeros;
-	nb_zeros = (nb_zeros < 0) ? 0 : nb_zeros;
-	if (flags->zero)
+	if (nb_zeros < 0)
+		nb_zeros = 0;
+	nb_spaces = flags->width - ft_strlen(nb_str) - nb_zeros;
+
+
+	if (flags->dash)
 	{
-		nb_zeros += nb_spaces;
-		nb_spaces = 0;
+		ft_buffer_putnchar(buffer, '0', nb_zeros);
+		if (nb != 0 || flags->precision != 0)
+			ft_buffer_putstr(buffer, nb_str);
+		if (flags->hash && nb != 0)
+		{
+			ft_buffer_putnchar(buffer, (flags->zero && flags->precision == -1) ? '0' : ' ', nb_spaces - 2);
+			ft_buffer_putstr(buffer, "0X");
+		}
+		else
+			ft_buffer_putnchar(buffer, (flags->zero && flags->precision == -1) ? '0' : ' ', nb_spaces);
 	}
-	ft_buffer_putnchar(buffer, ' ', nb_spaces);
-	if (flags->hash && nb != 0)
-		ft_buffer_putstr(buffer, "0X");
-	ft_buffer_putnchar(buffer, '0', nb_zeros);
-	if (flags->precision != 0 || nb != 0)
-		ft_buffer_putstr(buffer, nb_str);
+	else
+	{
+		if (flags->hash && nb != 0)
+		{
+			ft_buffer_putstr(buffer, "0X");
+			ft_buffer_putnchar(buffer, (flags->zero && flags->precision == -1) ? '0' : ' ', nb_spaces - 2);
+		}
+		else
+			ft_buffer_putnchar(buffer, (flags->zero && flags->precision == -1) ? '0' : ' ', nb_spaces);
+		ft_buffer_putnchar(buffer, '0', nb_zeros);
+		if (nb != 0 || flags->precision != 0)
+			ft_buffer_putstr(buffer, nb_str);
+	}
 	return (1);
 }
 
@@ -80,21 +110,24 @@ int ft_conversion_o(t_flags *flags, va_list *args, t_buffer *buffer)
 	nb = ft_cast_unsigned(flags, args);
 	nb_str = ft_itoau64_base(nb, "01234567");
 	nb_zeros = flags->precision - ft_strlen(nb_str);
-	nb_spaces = flags->width - ft_strlen(nb_str) - (flags->hash);
+	nb_spaces = flags->width - ft_strlen(nb_str) - (flags->hash && nb != 0);
 	if (nb_zeros > 0)
 		nb_spaces -= nb_zeros;
 	nb_zeros = (nb_zeros < 0) ? 0 : nb_zeros;
-	if (flags->zero)
+	if (flags->zero && flags->precision == -1)
 	{
 		nb_zeros += nb_spaces;
 		nb_spaces = 0;
 	}
-	ft_buffer_putnchar(buffer, ' ', nb_spaces);
-	if (flags->hash && (nb != 0 || flags->precision != -1))
+	if (!flags->dash)
+		ft_buffer_putnchar(buffer, ' ', nb_spaces);
+	if (flags->hash && nb != 0 && flags->precision == -1)
 		ft_buffer_putstr(buffer, "0");
 	ft_buffer_putnchar(buffer, '0', nb_zeros);
 	if (flags->precision != 0 || nb != 0)
 		ft_buffer_putstr(buffer, nb_str);
+	if (flags->dash)
+		ft_buffer_putnchar(buffer, ' ', nb_spaces);
 	return (1);
 }
 
