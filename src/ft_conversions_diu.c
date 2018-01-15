@@ -6,14 +6,11 @@
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 12:05:12 by msteffen          #+#    #+#             */
-/*   Updated: 2018/01/15 18:33:14 by msteffen         ###   ########.fr       */
+/*   Updated: 2018/01/15 19:18:24 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_conversions_diu.h"
-
-#include <stdio.h>
-
 
 int ft_conversion_d(t_flags *flags, va_list *args, t_buffer *buffer)
 {
