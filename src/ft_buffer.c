@@ -6,7 +6,7 @@
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 14:19:59 by msteffen          #+#    #+#             */
-/*   Updated: 2018/01/12 16:27:51 by msteffen         ###   ########.fr       */
+/*   Updated: 2018/01/15 11:34:04 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ int realloc_buffer(t_buffer *buffer, int target_size)
 		return (1);
 	if ((tmp = ft_strnew(ft_strlen(buffer->buffer_str))) == NULL)
 		return (0);
-	ft_strcpy(tmp, buffer->buffer_str);
+	ft_memcpy(tmp, buffer->buffer_str, buffer->len);
 	free(buffer->buffer_str);
 	buffer->allocated = buffer->allocated + target_size + 2;
 	if ((buffer->buffer_str = ft_strnew(buffer->allocated)) == NULL)
 		return (0);
-	ft_strcpy(buffer->buffer_str, tmp);
+	ft_memcpy(buffer->buffer_str, tmp, buffer->len);
 	free(tmp);
 	return (1);
 }
@@ -44,8 +44,8 @@ int realloc_buffer(t_buffer *buffer, int target_size)
 int ft_buffer_putchar(t_buffer *buffer, char c)
 {
 	realloc_buffer(buffer, 10);
-	buffer->buffer_str[ft_strlen(buffer->buffer_str)] = c;
-	buffer->buffer_str[ft_strlen(buffer->buffer_str) + 1] = 0;
+	buffer->buffer_str[buffer->len] = c;
+	buffer->buffer_str[buffer->len + 1] = 0;
 	buffer->len += 1;
 	return (1);
 }
@@ -67,7 +67,7 @@ int ft_buffer_putstr(t_buffer *buffer, char *str)
 {
 	if (realloc_buffer(buffer, ft_strlen(str)) == 0)
 		return (0);
-	ft_strcat(buffer->buffer_str, str);
+	ft_memcpy(buffer->buffer_str + buffer->len, str, ft_strlen(str));
 	buffer->len += ft_strlen(str);
 	return (1);
 }
@@ -78,7 +78,7 @@ int	ft_buffer_putnstr(t_buffer *buffer, char *str, int n)
 		return (-1);
 	if (realloc_buffer(buffer, ft_strlen(str) - n) == 0)
 		return (0);
-	ft_strncat(buffer->buffer_str, str, n);
+	ft_memcpy(buffer->buffer_str + buffer->len, str, n);
 	if (n > (int)ft_strlen(str))
 		buffer->len += (int)ft_strlen(str);
 	else

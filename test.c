@@ -6,6 +6,19 @@ int main()
 {
 	setlocale(LC_ALL, "");
 
-	ft_printf("|%c|", '\0');
-	ft_printf("|%c|", '\0');
+	int a = 0, b = 0;
+
+	a =    printf("%-8s;\n", 0);
+	b = ft_printf("%-8s;\n", 0);
+	printf("\n%d\n", b);
+
+
+
+
+
+
+
+
+
+
 }

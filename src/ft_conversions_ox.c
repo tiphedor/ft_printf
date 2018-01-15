@@ -6,7 +6,7 @@
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 12:20:51 by msteffen          #+#    #+#             */
-/*   Updated: 2018/01/12 12:41:13 by msteffen         ###   ########.fr       */
+/*   Updated: 2018/01/15 14:17:18 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,8 @@ int ft_conversion_o(t_flags *flags, va_list *args, t_buffer *buffer)
 
 	nb = ft_cast_unsigned(flags, args);
 	nb_str = ft_itoau64_base(nb, "01234567");
-	nb_zeros = flags->precision - ft_strlen(nb_str);
-	nb_spaces = flags->width - ft_strlen(nb_str) - (flags->hash && nb != 0);
+	nb_zeros = flags->precision - ft_strlen(nb_str) - (flags->hash && nb != 0);
+	nb_spaces = flags->width - ft_strlen(nb_str)- (flags->hash && nb != 0);
 	if (nb_zeros > 0)
 		nb_spaces -= nb_zeros;
 	nb_zeros = (nb_zeros < 0) ? 0 : nb_zeros;
@@ -121,7 +121,7 @@ int ft_conversion_o(t_flags *flags, va_list *args, t_buffer *buffer)
 	}
 	if (!flags->dash)
 		ft_buffer_putnchar(buffer, ' ', nb_spaces);
-	if (flags->hash && nb != 0 && flags->precision == -1)
+	if ((flags->hash && nb != 0) || (nb == 0 && flags->precision == 0 && flags->hash))
 		ft_buffer_putstr(buffer, "0");
 	ft_buffer_putnchar(buffer, '0', nb_zeros);
 	if (flags->precision != 0 || nb != 0)

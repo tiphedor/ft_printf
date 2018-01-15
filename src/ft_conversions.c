@@ -6,7 +6,7 @@
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 14:06:27 by msteffen          #+#    #+#             */
-/*   Updated: 2018/01/11 13:31:45 by msteffen         ###   ########.fr       */
+/*   Updated: 2018/01/15 14:19:16 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,15 @@ int ft_def_conv_placeholder(t_flags *f, va_list *v, t_buffer *b)
 	return (-2);
 }
 
-int ft_conversion_percent(t_flags *f, va_list *v, t_buffer *b)
+int ft_conversion_percent(t_flags *flags, va_list *args, t_buffer *buffer)
 {
-	ft_buffer_putchar(b, '%');
-	(void)f; (void)v; (void)b;
-	return (0);
+	if (flags->width != 0 && !flags->dash)
+		ft_buffer_putnchar(buffer, (flags->zero) ? '0' : ' ', flags->width - 1);
+	ft_buffer_putchar(buffer, '%');
+	if (flags->width != 0 && flags->dash)
+		ft_buffer_putnchar(buffer, ' ', flags->width - 1);
+	(void)args;
+	return (1);
 }
 
 void ft_init_conversions(int (*conversions[256])(t_flags *, va_list *, t_buffer *))
