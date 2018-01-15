@@ -6,16 +6,24 @@
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 14:06:27 by msteffen          #+#    #+#             */
-/*   Updated: 2018/01/15 14:19:16 by msteffen         ###   ########.fr       */
+/*   Updated: 2018/01/15 17:14:43 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_conversions.h"
 
-int ft_def_conv_placeholder(t_flags *f, va_list *v, t_buffer *b)
+int ft_def_conv_placeholder(t_flags *flags, va_list *args, t_buffer *buffer)
 {
-	(void)f; (void)v; (void)b;
-	return (-2);
+	if (flags->dash && flags->percent_holder > 0)
+		ft_buffer_putchar(buffer, flags->percent_holder);
+	if (flags->zero && !flags->dash)
+		ft_buffer_putnchar(buffer, '0', flags->width - 1);
+	else
+		ft_buffer_putnchar(buffer, ' ', flags->width - 1);
+	if (!flags->dash && flags->percent_holder > 0)
+		ft_buffer_putchar(buffer, flags->percent_holder);
+	(void)flags; (void)args; (void)buffer;
+	return (1);
 }
 
 int ft_conversion_percent(t_flags *flags, va_list *args, t_buffer *buffer)

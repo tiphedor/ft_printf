@@ -6,7 +6,7 @@
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 14:09:24 by msteffen          #+#    #+#             */
-/*   Updated: 2018/01/12 11:43:02 by msteffen         ###   ########.fr       */
+/*   Updated: 2018/01/15 17:02:19 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	ft_init_flags(t_flags *flags)
 	flags->h = 0;
 	flags->l = 0;
 	flags->ll = 0;
+	flags->percent_holder = 0;
 }
 
 int		ft_parse_flags_length(const char *str, t_flags *flags)

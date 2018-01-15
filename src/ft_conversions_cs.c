@@ -6,7 +6,7 @@
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 12:26:29 by msteffen          #+#    #+#             */
-/*   Updated: 2018/01/15 16:46:10 by msteffen         ###   ########.fr       */
+/*   Updated: 2018/01/15 17:01:18 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int ft_conversion_c(t_flags *flags, va_list *args, t_buffer *buffer)
 		return (ft_conversion_cc(flags, args, buffer));
 	c = va_arg(*args, int);
 	if (!flags->dash && flags->width > 1)
-		ft_buffer_putnchar(buffer, ' ', flags->width - 1);
+		ft_buffer_putnchar(buffer, (flags->zero) ? '0':' ', flags->width - 1);
 	ft_buffer_putchar(buffer, c);
 	if (flags->dash && flags->width > 1)
 		ft_buffer_putnchar(buffer, ' ', flags->width - 1);
@@ -41,7 +41,7 @@ int ft_conversion_s(t_flags *flags, va_list *args, t_buffer *buffer)
 		if (flags->precision != -1)
 			nb_spaces += 6 - flags->precision;
 		if (!flags->dash)
-			ft_buffer_putnchar(buffer, ' ', nb_spaces);
+			ft_buffer_putnchar(buffer, (flags->zero) ? '0':' ', nb_spaces);
 		ft_buffer_putnstr(buffer, "(null)", (flags->precision == -1) ? 6 : flags->precision);
 		if (flags->dash)
 			ft_buffer_putnchar(buffer, ' ', nb_spaces);
@@ -54,7 +54,7 @@ int ft_conversion_s(t_flags *flags, va_list *args, t_buffer *buffer)
 	if (flags->precision == -1 || flags->precision > (int)ft_strlen(c))
 	{
 		if (!flags->dash)
-			ft_buffer_putnchar(buffer, ' ', nb_spaces);
+			ft_buffer_putnchar(buffer, (flags->zero) ? '0':' ', nb_spaces);
 		ft_buffer_putstr(buffer, c);
 		if (flags->dash)
 			ft_buffer_putnchar(buffer, ' ', nb_spaces);
@@ -115,7 +115,7 @@ int ft_conversion_cs(t_flags *flags, va_list *args, t_buffer *buffer)
 	if (flags->precision != -1)
 		nb_spaces += ft_unicode_count_bytes(c) - ft_unicode_count_nbytes(c, flags->precision);
 	if (!flags->dash)
-		ft_buffer_putnchar(buffer, ' ', nb_spaces);
+		ft_buffer_putnchar(buffer, (flags->zero) ? '0':' ', nb_spaces);
 	if (flags->precision != -1)
 	{
 		if (ft_putunicode_nstr(c, buffer, flags->precision) == -1)

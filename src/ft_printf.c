@@ -6,7 +6,7 @@
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 13:58:21 by msteffen          #+#    #+#             */
-/*   Updated: 2018/01/15 13:42:47 by msteffen         ###   ########.fr       */
+/*   Updated: 2018/01/15 17:16:09 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,20 +50,22 @@ int	ft_printf_tofd(const char *format, int fd, va_list *args)
 	int				(*conversions[256]) (t_flags *, va_list *, t_buffer *);
 	t_buffer		*buffer;
 	t_flags			flags;
-	int				ret;
+	unsigned int	f_len;
 
 	i = 0;
 	buffer = buffer_init();
 	ft_init_conversions(conversions);
-	while (format[i])
+	f_len = ft_strlen(format);
+	while (i < f_len)
 	{
 		if (format[i] == '%')
 		{
 			i += ft_parse_flags(format + i + 1, &flags);
-			ret = conversions[(int)format[i]](&flags, args, buffer);
-			if (ret == -2 && format[i - 1])
-				i--;
-			else if (ret == -1)
+			if (format[i])
+				flags.percent_holder = format[i];
+			else
+				flags.percent_holder = -1;
+			if (conversions[(int)format[i]](&flags, args, buffer) == -1)
 				return (-1);
 		}
 		else

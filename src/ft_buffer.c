@@ -6,7 +6,7 @@
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 14:19:59 by msteffen          #+#    #+#             */
-/*   Updated: 2018/01/15 11:34:04 by msteffen         ###   ########.fr       */
+/*   Updated: 2018/01/15 17:11:45 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_buffer	*buffer_init()
 	buffer->len = 0;
 	return (buffer);
 }
-
+#include <stdio.h>
 int realloc_buffer(t_buffer *buffer, int target_size)
 {
 	char *tmp;

@@ -18,8 +18,8 @@ int main()
 
 	int a = 0, b = 0;
 
-	a =    printf("%7.9S|\n", 0);
-	b = ft_printf("%7.9S|\n", 0);
+	a =    printf("%");
+	b = ft_printf("%");
 
 	printf("\n%d %d\n", a, b);
 

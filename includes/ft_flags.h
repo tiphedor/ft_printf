@@ -6,7 +6,7 @@
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 14:08:03 by msteffen          #+#    #+#             */
-/*   Updated: 2018/01/09 14:17:11 by msteffen         ###   ########.fr       */
+/*   Updated: 2018/01/15 17:02:03 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct	s_flags
 	int l;
 	int ll;
 	char *printf_buffer;
+	int percent_holder;
 }				t_flags;
 
 void			ft_init_flags(t_flags *flags);
