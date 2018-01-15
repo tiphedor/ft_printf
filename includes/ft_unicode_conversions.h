@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_conversions.h                                   :+:      :+:    :+:   */
+/*   ft_unicode_conversions.h                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/09 14:05:14 by msteffen          #+#    #+#             */
-/*   Updated: 2018/01/15 18:44:49 by msteffen         ###   ########.fr       */
+/*   Created: 2018/01/15 19:02:45 by msteffen          #+#    #+#             */
+/*   Updated: 2018/01/15 19:07:28 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_CONVERSIONS_H
-# define FT_CONVERSIONS_H
+#ifndef FT_UNICODE_CONVERSIONS_H
+# define FT_UNICODE_CONVERSIONS_H
 
-# include "ft_flags.h"
 # include "ft_buffer.h"
-# include "ft_conversions_diu.h"
-# include "ft_conversions_p.h"
-# include "ft_conversions_ox.h"
-# include "ft_conversions_cs.h"
-# include <stdarg.h>
+# include "ft_unicode_print.h"
 
-void ft_init_conversions(int (*conversions[256])(t_flags *, va_list *,
-	t_buffer *));
+int print_bytes(unsigned char *bytes, int bytes_count, t_buffer *buffer);
+int ft_put_unicode_lowrange(unsigned long nb, t_buffer *buffer);
+int ft_put_unicode_midrange(unsigned long nb, t_buffer *buffer);
+int ft_put_unicode_highrange(unsigned long nb, t_buffer *buffer);
 
 #endif

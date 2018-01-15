@@ -6,17 +6,17 @@
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 12:25:56 by msteffen          #+#    #+#             */
-/*   Updated: 2018/01/11 13:10:07 by msteffen         ###   ########.fr       */
+/*   Updated: 2018/01/15 19:08:48 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_CONVERSIONS_CS
-# define FT_CONVERSIONS_CS
+#ifndef FT_CONVERSIONS_CS_H
+# define FT_CONVERSIONS_CS_H
 
 # include "ft_flags.h"
 # include "ft_buffer.h"
 # include "ft_casts.h"
-# include "ft_unicode.h"
+# include "ft_unicode_print.h"
 # include <stdarg.h>
 
 int ft_conversion_c(t_flags *flags, va_list *args, t_buffer *buffer);

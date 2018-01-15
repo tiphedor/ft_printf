@@ -6,7 +6,7 @@
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 12:44:10 by msteffen          #+#    #+#             */
-/*   Updated: 2018/01/12 16:07:45 by msteffen         ###   ########.fr       */
+/*   Updated: 2018/01/15 18:38:35 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@ int ft_conversion_p(t_flags *flags, va_list *args, t_buffer *buffer)
 		ft_buffer_putstr(buffer, nb_str);
 	if (flags->dash)
 		ft_buffer_putnchar(buffer, ' ', nb_spaces);
+	free(nb_str);
 	return (1);
 }

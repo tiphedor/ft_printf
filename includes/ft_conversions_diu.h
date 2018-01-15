@@ -6,7 +6,7 @@
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 12:02:47 by msteffen          #+#    #+#             */
-/*   Updated: 2018/01/11 12:55:11 by msteffen         ###   ########.fr       */
+/*   Updated: 2018/01/15 18:53:10 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FT_CONVERSIONS_DIU_H
 
 # include "ft_flags.h"
-# include "ft_buffer.h"
+# include "ft_buffer_operations.h"
 # include "ft_casts.h"
 # include <stdarg.h>
 

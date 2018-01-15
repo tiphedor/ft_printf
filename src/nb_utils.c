@@ -6,7 +6,7 @@
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 11:40:30 by msteffen          #+#    #+#             */
-/*   Updated: 2018/01/11 11:50:10 by msteffen         ###   ########.fr       */
+/*   Updated: 2018/01/15 19:00:46 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,18 @@
 
 char	*ft_itoau64_base(uint64_t nb, char *base)
 {
-	int base_len;
-	int i;
-	char *res;
-	uint64_t nb_tmp;
+	int			base_len;
+	int			i;
+	char		*res;
+	uint64_t	nb_tmp;
 
 	i = 0;
 	nb_tmp = nb;
 	base_len = ft_strlen(base);
 	if (nb_tmp == 0)
 		i = 1;
-	while (nb_tmp > 0) {
+	while (nb_tmp > 0)
+	{
 		i++;
 		nb_tmp /= base_len;
 	}
@@ -38,13 +39,13 @@ char	*ft_itoau64_base(uint64_t nb, char *base)
 		nb /= base_len;
 		i--;
 	}
-	return(res);
+	return (res);
 }
 
 char	*ft_itoa64_base(int64_t nb, char *base)
 {
-	char *res;
-	int i;
+	char	*res;
+	int		i;
 
 	if (nb >= 0)
 		return (ft_itoau64_base(nb, base));
@@ -56,6 +57,5 @@ char	*ft_itoa64_base(int64_t nb, char *base)
 		i--;
 	}
 	res[0] = '-';
-
 	return (res);
 }

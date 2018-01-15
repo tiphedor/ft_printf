@@ -6,7 +6,7 @@
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 14:09:24 by msteffen          #+#    #+#             */
-/*   Updated: 2018/01/15 17:02:19 by msteffen         ###   ########.fr       */
+/*   Updated: 2018/01/15 19:16:08 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int		ft_parse_flags_flags(const char *str, t_flags *flags)
 	}
 	return (i);
 }
-#include <stdio.h>
+
 int		ft_parse_flags(const char *str, t_flags *flags)
 {
 	int i;
@@ -108,24 +108,5 @@ int		ft_parse_flags(const char *str, t_flags *flags)
 	i += ft_parse_flags_flags(str, flags);
 	i += ft_parse_flags_fieldprecision(str + i, flags);
 	i += ft_parse_flags_length(str + i, flags);
-
-/*
-	printf("=======\n");
-	printf("hash = %d\n", flags->hash);
-	printf("zero = %d\n", flags->zero);
-	printf("dash = %d\n", flags->dash);
-	printf("plus = %d\n", flags->plus);
-	printf("space = %d\n", flags->space);
-	printf("width = %d\n", flags->width);
-	printf("precision = %d\n", flags->precision);
-	printf("j = %d\n", flags->j);
-	printf("z = %d\n", flags->z);
-	printf("hh = %d\n", flags->hh);
-	printf("h = %d\n", flags->h);
-	printf("l = %d\n", flags->l);
-	printf("ll = %d\n", flags->ll);
-	printf("=======\n");
-
-*/
 	return (i + 1);
 }

@@ -6,7 +6,7 @@
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 14:18:09 by msteffen          #+#    #+#             */
-/*   Updated: 2018/01/11 16:13:00 by msteffen         ###   ########.fr       */
+/*   Updated: 2018/01/15 18:55:03 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,13 @@
 # include <stdlib.h>
 
 typedef struct	s_buffer {
-	char *buffer_str;
-	int allocated;
-	int len;
+	char	*buffer_str;
+	int		allocated;
+	int		len;
 }				t_buffer;
 
-t_buffer		*buffer_init();
+t_buffer		*buffer_init(void);
 int				realloc_buffer(t_buffer *buffer, int target_size);
-int				ft_buffer_putnchar(t_buffer *buffer, char c, int n);
-int				ft_buffer_putchar(t_buffer *buffer, char c);
-int				ft_buffer_putstr(t_buffer *buffer, char *str);
-int				ft_buffer_putnstr(t_buffer *buffer, char *str, int n);
+int				ft_dump_buffer(t_buffer *buffer, int fd);
 
 #endif

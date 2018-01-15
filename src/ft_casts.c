@@ -6,13 +6,13 @@
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 12:07:55 by msteffen          #+#    #+#             */
-/*   Updated: 2018/01/11 12:49:54 by msteffen         ###   ########.fr       */
+/*   Updated: 2018/01/15 18:56:02 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_casts.h"
 
-int64_t ft_cast_signed(t_flags *flags, va_list *args)
+int64_t		ft_cast_signed(t_flags *flags, va_list *args)
 {
 	if (flags->hh)
 		return ((signed char)va_arg(*args, int));

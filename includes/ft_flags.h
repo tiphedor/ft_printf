@@ -6,32 +6,32 @@
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 14:08:03 by msteffen          #+#    #+#             */
-/*   Updated: 2018/01/15 17:02:03 by msteffen         ###   ########.fr       */
+/*   Updated: 2018/01/15 18:46:09 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PFFLAGS_H
-# define FT_PFFLAGS_H
+#ifndef FT_FLAGS_H
+# define FT_FLAGS_H
 
 # include "libft.h"
 
 typedef struct	s_flags
 {
-	int hash;
-	int zero;
-	int dash;
-	int plus;
-	int space;
-	int width;
-	int precision;
-	int j;
-	int z;
-	int hh;
-	int h;
-	int l;
-	int ll;
-	char *printf_buffer;
-	int percent_holder;
+	int		hash;
+	int		zero;
+	int		dash;
+	int		plus;
+	int		space;
+	int		width;
+	int		precision;
+	int		j;
+	int		z;
+	int		hh;
+	int		h;
+	int		l;
+	int		ll;
+	char	*printf_buffer;
+	int		percent_holder;
 }				t_flags;
 
 void			ft_init_flags(t_flags *flags);
