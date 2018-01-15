@@ -6,7 +6,7 @@
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 12:26:29 by msteffen          #+#    #+#             */
-/*   Updated: 2018/01/15 14:56:03 by msteffen         ###   ########.fr       */
+/*   Updated: 2018/01/15 16:46:10 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,13 +93,40 @@ int ft_conversion_cc(t_flags *flags, va_list *args, t_buffer *buffer)
 int ft_conversion_cs(t_flags *flags, va_list *args, t_buffer *buffer)
 {
 	wchar_t *c;
+	int nb_spaces;
+
 
 	c = (wchar_t*)va_arg(*args, wchar_t*);
-	if (c == 0)
-		ft_buffer_putstr(buffer, "(null)");
+	if (c == NULL)
+	{
+		nb_spaces = flags->width - 6;
+		if (flags->precision > 6)
+			flags->precision = 6;
+		if (flags->precision != -1)
+			nb_spaces += 6 - flags->precision;
+		if (!flags->dash)
+			ft_buffer_putnchar(buffer, ' ', nb_spaces);
+		ft_buffer_putnstr(buffer, "(null)", (flags->precision == -1) ? 6 : flags->precision);
+		if (flags->dash)
+			ft_buffer_putnchar(buffer, ' ', nb_spaces);
+		return (1);
+	}
+	nb_spaces = flags->width - ft_unicode_count_bytes(c);
+	if (flags->precision != -1)
+		nb_spaces += ft_unicode_count_bytes(c) - ft_unicode_count_nbytes(c, flags->precision);
+	if (!flags->dash)
+		ft_buffer_putnchar(buffer, ' ', nb_spaces);
+	if (flags->precision != -1)
+	{
+		if (ft_putunicode_nstr(c, buffer, flags->precision) == -1)
+			return (-1);
+	}
 	else
+	{
 		if (ft_putunicode_str(c, buffer) == -1)
 			return (-1);
-	(void)flags;
+	}
+	if (flags->dash)
+		ft_buffer_putnchar(buffer, ' ', nb_spaces);
 	return (0);
 }

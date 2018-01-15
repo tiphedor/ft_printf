@@ -6,12 +6,47 @@
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 13:05:59 by msteffen          #+#    #+#             */
-/*   Updated: 2018/01/15 13:42:31 by msteffen         ###   ########.fr       */
+/*   Updated: 2018/01/15 16:41:14 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_unicode.h"
 #include <stdio.h>
+
+int ft_unicode_count_nbytes(wchar_t *str, int n)
+{
+	int i;
+	int len;
+	int full;
+
+	i = 0;
+	len = 0;
+	full = 0;
+	while (str[i] && !full)
+	{
+		if (len + ft_get_utf_len(str[i]) > n)
+			full = 1;
+		else
+			len += ft_get_utf_len(str[i]);
+		i++;
+	}
+	return (len);
+}
+
+int ft_unicode_count_bytes(wchar_t *str)
+{
+	int i;
+	int len;
+
+	i = 0;
+	len = 0;
+	while (str[i])
+	{
+		len += ft_get_utf_len(str[i]);
+		i++;
+	}
+	return (len);
+}
 
 int ft_get_utf_len(unsigned long nb)
 {
@@ -112,6 +147,22 @@ int ft_putunicode_str(wchar_t *str, t_buffer *buffer)
 
 	i = 0;
 	while (str[i]) {
+		if (ft_putunicode_char(str[i], buffer) == -1)
+			return (-1);
+		i++;
+	}
+	return (1);
+}
+
+int ft_putunicode_nstr(wchar_t *str, t_buffer *buffer, int n)
+{
+	int i;
+	int char_count;
+
+	i = 0;
+	char_count = 0;
+	while (str[i] && char_count + ft_get_utf_len(str[i]) <= n) {
+		char_count += ft_get_utf_len(str[i]);
 		if (ft_putunicode_char(str[i], buffer) == -1)
 			return (-1);
 		i++;
