@@ -6,7 +6,7 @@
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 12:44:10 by msteffen          #+#    #+#             */
-/*   Updated: 2018/01/15 18:38:35 by msteffen         ###   ########.fr       */
+/*   Updated: 2018/01/17 15:17:46 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ int ft_conversion_p(t_flags *flags, va_list *args, t_buffer *buffer)
 	int nb_spaces;
 	int nb_zeros;
 
-	flags->l = 1;
-	nb = ft_cast_unsigned(flags, args);
+	nb = va_arg(*args, unsigned long int);
 	nb_str = ft_itoau64_base(nb, "0123456789abcdef");
 	nb_zeros = flags->precision - ft_strlen(nb_str);
 	nb_spaces = flags->width - ft_strlen(nb_str) - 2;

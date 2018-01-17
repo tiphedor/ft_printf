@@ -6,7 +6,7 @@
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 14:09:24 by msteffen          #+#    #+#             */
-/*   Updated: 2018/01/15 19:16:08 by msteffen         ###   ########.fr       */
+/*   Updated: 2018/01/17 15:08:56 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_init_flags(t_flags *flags)
 	flags->percent_holder = 0;
 }
 
-int		ft_parse_flags_length(const char *str, t_flags *flags)
+static int		ft_parse_flags_length(const char *str, t_flags *flags)
 {
 	int i;
 
@@ -54,7 +54,7 @@ int		ft_parse_flags_length(const char *str, t_flags *flags)
 	return (0);
 }
 
-int		ft_parse_flags_fieldprecision(const char *str, t_flags *flags)
+static int		ft_parse_flags_fieldprecision(const char *str, t_flags *flags)
 {
 	int i;
 
@@ -77,7 +77,7 @@ int		ft_parse_flags_fieldprecision(const char *str, t_flags *flags)
 	return (i);
 }
 
-int		ft_parse_flags_flags(const char *str, t_flags *flags)
+static int		ft_parse_flags_flags(const char *str, t_flags *flags)
 {
 	int i;
 

@@ -6,7 +6,7 @@
 #    By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/06 14:52:30 by msteffen          #+#    #+#              #
-#    Updated: 2018/01/15 19:06:39 by msteffen         ###   ########.fr        #
+#    Updated: 2018/01/16 09:47:07 by msteffen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,19 +46,24 @@ FT_OBJS 			=	$(patsubst %.c,%.o,$(FT_SRC))
 
 NAME				=	libftprintf.a
 
-all: libft $(NAME)
+all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): libft/libft.a $(OBJS)
 	$(LD) $(LDFLAGS) $(NAME) $(OBJS) $(FT_OBJS)
 %.o: %.c
 	$(CC) $(CFLAGS) $< -o $@
 
-clean:
+clean: ft_clean
 	rm -rf $(OBJS)
-fclean: clean
+fclean: clean ft_fclean
 	rm -rf $(NAME)
-re: fclean all
-libft: libft/libft.a
+re: fclean ft_fclean all
+ft_clean:
+	make -C libft clean
+ft_fclean:
+	make -C libft fclean
+ft_re:
+	make -C libft re
 libft/libft.a:
 	make -C libft
-.PHONY: all clean fclean re libft
+.PHONY: all clean fclean re libft ft_clean ft_fclean ft_re

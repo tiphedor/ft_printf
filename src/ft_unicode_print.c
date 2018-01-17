@@ -6,7 +6,7 @@
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 13:05:59 by msteffen          #+#    #+#             */
-/*   Updated: 2018/01/15 19:13:55 by msteffen         ###   ########.fr       */
+/*   Updated: 2018/01/17 15:09:34 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,9 @@ int	ft_putunicode_char(unsigned long nb, t_buffer *buffer)
 	else if (nb <= 0x7FF)
 		return (ft_put_unicode_lowrange(nb, buffer));
 	else if (nb <= 0xFFFF)
-	{
 		return (ft_put_unicode_midrange(nb, buffer));
-	}
 	else if (nb <= 0x10FFFF)
-	{
 		return (ft_put_unicode_highrange(nb, buffer));
-	}
 	return (-1);
 }
 

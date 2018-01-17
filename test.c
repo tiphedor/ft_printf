@@ -8,8 +8,8 @@ int main()
 
 	int a = 0, b = 0;
 
-	a =    printf("|%02.d|%02.0d|\n", 0, 0);
-	b = ft_printf("|%02.d|%02.0d|\n", 0, 0);
+	a =    printf("%ll#d\n", 9223372036854775807);
+	b = ft_printf("%ll#d\n", 9223372036854775807);
 
 	printf("\n%d %d\n", a, b);
 

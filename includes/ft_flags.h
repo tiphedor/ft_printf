@@ -6,7 +6,7 @@
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 14:08:03 by msteffen          #+#    #+#             */
-/*   Updated: 2018/01/15 18:46:09 by msteffen         ###   ########.fr       */
+/*   Updated: 2018/01/17 15:11:58 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,6 @@ typedef struct	s_flags
 }				t_flags;
 
 void			ft_init_flags(t_flags *flags);
-int				ft_parse_flags_length(const char *str, t_flags *flags);
-int				ft_parse_flags_fieldprecision(const char *str, t_flags *flags);
-int				ft_parse_flags_flags(const char *str, t_flags *flags);
 int				ft_parse_flags(const char *str, t_flags *flags);
 
 #endif
