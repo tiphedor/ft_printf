@@ -6,7 +6,7 @@
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 13:58:21 by msteffen          #+#    #+#             */
-/*   Updated: 2018/02/05 10:21:06 by msteffen         ###   ########.fr       */
+/*   Updated: 2018/02/05 15:50:29 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,23 @@
 int	ft_printf(const char *format, ...)
 {
 	va_list			args;
+	char			*format_styled;
 
 	va_start(args, format);
-	return (ft_printf_tofd(format, 1, &args));
+	format_styled = ft_strdup(format);
+	format_styled = ft_printf_stylize(format_styled);
+	return (ft_printf_tofd(format_styled, 1, &args));
 }
 
 int	ft_printf_fd(int fd, const char *format, ...)
 {
 	va_list			args;
+	char			*format_styled;
 
 	va_start(args, format);
-	return (ft_printf_tofd(format, fd, &args));
+	format_styled = ft_strdup(format);
+	format_styled = ft_printf_stylize(format_styled);
+	return (ft_printf_tofd(format_styled, fd, &args));
 }
 
 int	ft_printf_tofd(const char *format, int fd, va_list *args)

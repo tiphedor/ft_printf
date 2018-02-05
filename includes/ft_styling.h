@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_styling.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/09 13:57:41 by msteffen          #+#    #+#             */
-/*   Updated: 2018/02/05 15:49:24 by msteffen         ###   ########.fr       */
+/*   Created: 2018/02/05 15:24:24 by msteffen          #+#    #+#             */
+/*   Updated: 2018/02/05 15:53:29 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#ifndef FT_STYLING_H
+# define FT_STYLING_H
 
-# include "ft_conversions.h"
-# include "ft_buffer.h"
-# include "ft_flags.h"
-# include "ft_styling.h"
+# include "libft.h"
 
-int	ft_printf(const char *format, ...);
-int ft_printf_fd(int fd, const char *format, ...);
-int	ft_printf_tofd(const char *format, int fd, va_list *args);
+char		*ft_printf_stylize(char *str);
 
 #endif
