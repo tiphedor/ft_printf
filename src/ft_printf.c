@@ -6,7 +6,7 @@
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 13:58:21 by msteffen          #+#    #+#             */
-/*   Updated: 2018/02/05 15:50:29 by msteffen         ###   ########.fr       */
+/*   Updated: 2018/02/05 17:43:14 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,28 @@ int	ft_printf(const char *format, ...)
 {
 	va_list			args;
 	char			*format_styled;
+	int				ret;
 
 	va_start(args, format);
 	format_styled = ft_strdup(format);
 	format_styled = ft_printf_stylize(format_styled);
-	return (ft_printf_tofd(format_styled, 1, &args));
+	ret = ft_printf_tofd(format_styled, 1, &args);
+	free(format_styled);
+	return (ret);
 }
 
 int	ft_printf_fd(int fd, const char *format, ...)
 {
 	va_list			args;
 	char			*format_styled;
+	int				ret;
 
 	va_start(args, format);
 	format_styled = ft_strdup(format);
 	format_styled = ft_printf_stylize(format_styled);
-	return (ft_printf_tofd(format_styled, fd, &args));
+	ret = ft_printf_tofd(format_styled, fd, &args);
+	free(format_styled);
+	return (ret);
 }
 
 int	ft_printf_tofd(const char *format, int fd, va_list *args)
@@ -54,7 +60,12 @@ int	ft_printf_tofd(const char *format, int fd, va_list *args)
 			i += ft_parse_flags(format + i + 1, &flags);
 			flags.percent_holder = (format[i]) ? format[i] : -1;
 			if (conversions[(int)format[i]](&flags, args, buffer) == -1)
+			{
+				free(buffer->buffer_str);
+				free(buffer);
 				return (-1);
+			}
+
 		}
 		else
 			ft_buffer_putchar(buffer, format[i]);
