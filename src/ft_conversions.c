@@ -6,7 +6,7 @@
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 14:06:27 by msteffen          #+#    #+#             */
-/*   Updated: 2018/01/15 19:17:38 by msteffen         ###   ########.fr       */
+/*   Updated: 2018/02/05 12:32:24 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,6 @@ void	ft_init_conversions(int (*conversions[256])(t_flags *, va_list *,
 	conversions['p'] = &ft_conversion_p;
 	conversions['C'] = &ft_conversion_cc;
 	conversions['S'] = &ft_conversion_cs;
+	conversions['b'] = &ft_conversion_b;
+	conversions['B'] = &ft_conversion_cb;
 }

@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_conversions.h                                   :+:      :+:    :+:   */
+/*   ft_conversions_b.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/09 14:05:14 by msteffen          #+#    #+#             */
-/*   Updated: 2018/02/05 12:27:25 by msteffen         ###   ########.fr       */
+/*   Created: 2018/02/05 12:26:55 by msteffen          #+#    #+#             */
+/*   Updated: 2018/02/05 12:32:15 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_CONVERSIONS_H
-# define FT_CONVERSIONS_H
+#ifndef FT_CONVERSIONS_B_H
+# define FT_CONVERSIONS_B_H
 
 # include "ft_flags.h"
 # include "ft_buffer.h"
-# include "ft_conversions_diu.h"
-# include "ft_conversions_p.h"
-# include "ft_conversions_ox.h"
-# include "ft_conversions_cs.h"
-# include "ft_conversions_b.h"
+# include "ft_buffer_operations.h"
+# include "ft_casts.h"
 # include <stdarg.h>
+# include <stdint.h>
 
-void ft_init_conversions(int (*conversions[256])(t_flags *, va_list *,
-	t_buffer *));
+int	ft_conversion_b(t_flags *flags, va_list *args, t_buffer *buffer);
+int	ft_conversion_cb(t_flags *flags, va_list *args, t_buffer *buffer);
 
 #endif
