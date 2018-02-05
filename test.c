@@ -2,19 +2,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "libft.h"
-
+#include "ft_printf.h"
 
 int main()
 {
-//      setlocale(LC_ALL, "");
+	int a,b;
 
-//      int a = 0;
+	a = ft_printf("t %#9.5X%0006.2x et %lX!\n", 0xab, 0x876, 0xff11ff11ff1);
+	b =    printf("t %#9.5X%0006.2x et %lX!\n", 0xab, 0x876, 0xff11ff11ff1);
 
-        char *str   =
-
-        ft_printf(str);
-        free(str);
-        return (0);
+	printf("\n\nFT = %d; OG = %d\n", a, b);
 }
 
 

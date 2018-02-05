@@ -6,7 +6,7 @@
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/05 11:27:41 by msteffen          #+#    #+#             */
-/*   Updated: 2018/02/05 11:28:14 by msteffen         ###   ########.fr       */
+/*   Updated: 2018/02/05 16:32:43 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ int	ft_conversion_cx_dash(t_buffer *buffer, t_flags *flags, int *params,
 int	ft_conversion_cx_normpad(t_flags *flags, uint64_t nb, t_buffer *buffer,
 	int *params)
 {
-	if (flags->precision == 0 && nb == 0)
-		ft_buffer_putnchar(buffer, (flags->zero && flags->precision == -1)
-			? '0' : ' ', params[1] + 1);
-	else
-		ft_buffer_putnchar(buffer, (flags->zero && flags->precision == -1)
-			? '0' : ' ', params[1]);
+	char *nb_str;
+
+	nb_str = ft_itoau64_base(nb, "0123456789ABCDEF");
 	ft_buffer_putnchar(buffer, '0', params[0]);
+	if (nb != 0 || flags->precision != 0)
+		ft_buffer_putstr(buffer, nb_str);
+	free(nb_str);
 	return (1);
 }
 
@@ -68,9 +68,13 @@ int	ft_conversion_cx_norm(t_buffer *buffer, t_flags *flags, int *params,
 			ft_buffer_putstr(buffer, "0X");
 		}
 	}
+	else if (flags->precision == 0 && nb == 0)
+		ft_buffer_putnchar(buffer, (flags->zero && flags->precision == -1)
+			? '0' : ' ', params[1] + 1);
+	else
+		ft_buffer_putnchar(buffer, (flags->zero && flags->precision == -1)
+			? '0' : ' ', params[1]);
 	ft_conversion_cx_normpad(flags, nb, buffer, params);
-	if (nb != 0 || flags->precision != 0)
-		ft_buffer_putstr(buffer, nb_str);
 	free(nb_str);
 	return (1);
 }
