@@ -6,7 +6,7 @@
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/05 15:16:37 by msteffen          #+#    #+#             */
-/*   Updated: 2018/02/05 15:20:42 by msteffen         ###   ########.fr       */
+/*   Updated: 2018/02/05 17:02:34 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	ft_strreplace_first(char *haystack, char *new_haystack,
 	start = ft_strstr(haystack, needle) - haystack;
 	ft_strncat(new_haystack, haystack, start);
 	ft_strcat(new_haystack, new_needle);
-	ft_strcat(new_haystack, haystack + start + strlen(needle));
+	ft_strcat(new_haystack, haystack + start + ft_strlen(needle));
 	return (1);
 }
 
