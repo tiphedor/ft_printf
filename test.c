@@ -8,9 +8,11 @@ int main()
 
 	int a = 0, b = 0;
 
-	a =    printf("%ll#d\n", 9223372036854775807);
-	b = ft_printf("%ll#d\n", 9223372036854775807);
+	a =    printf("%8C et coco %C titi %lc|\n", 3250, 0x11ffff, 'a');
+	b = ft_printf("%8C et coco %C titi %lc|\n", 3250, 0x11ffff, 'a');
 
-	printf("\n%d %d\n", a, b);
+	printf("\n\nOG = %d; FT = %d\n", a, b);
+
+
 
 }

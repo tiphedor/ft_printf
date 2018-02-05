@@ -6,7 +6,7 @@
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 13:05:59 by msteffen          #+#    #+#             */
-/*   Updated: 2018/01/17 15:09:34 by msteffen         ###   ########.fr       */
+/*   Updated: 2018/02/02 15:51:21 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	ft_putunicode_char(unsigned long nb, t_buffer *buffer)
 	if (nb >= 0xd800 && nb <= 0xDFFF)
 		return (-1);
 	if (nb <= 0x7F)
+		return (ft_buffer_putchar(buffer, nb));
+	else if (nb <= 255 && MB_CUR_MAX == 1)
 		return (ft_buffer_putchar(buffer, nb));
 	else if (nb <= 0x7FF)
 		return (ft_put_unicode_lowrange(nb, buffer));

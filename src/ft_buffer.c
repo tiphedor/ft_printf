@@ -6,7 +6,7 @@
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 14:19:59 by msteffen          #+#    #+#             */
-/*   Updated: 2018/01/15 18:55:22 by msteffen         ###   ########.fr       */
+/*   Updated: 2018/02/05 10:19:54 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ t_buffer	*buffer_init(void)
 {
 	t_buffer *buffer;
 
-	buffer = (t_buffer*)malloc(sizeof(t_buffer));
+	if ((buffer = (t_buffer*)malloc(sizeof(t_buffer))) == 0)
+		return (0);
 	buffer->buffer_str = ft_strnew(32);
 	buffer->allocated = 32;
 	buffer->len = 0;

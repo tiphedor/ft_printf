@@ -6,13 +6,13 @@
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 12:26:29 by msteffen          #+#    #+#             */
-/*   Updated: 2018/01/15 18:58:55 by msteffen         ###   ########.fr       */
+/*   Updated: 2018/02/05 09:53:07 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_conversions_cs.h"
 
-int	ft_conversion_c(t_flags *flags, va_list *args, t_buffer *buffer)
+int			ft_conversion_c(t_flags *flags, va_list *args, t_buffer *buffer)
 {
 	char c;
 
@@ -27,7 +27,7 @@ int	ft_conversion_c(t_flags *flags, va_list *args, t_buffer *buffer)
 	return (1);
 }
 
-int	ft_conversion_s(t_flags *flags, va_list *args, t_buffer *buffer)
+int			ft_conversion_s(t_flags *flags, va_list *args, t_buffer *buffer)
 {
 	char	*c;
 	int		nb_spaces;
@@ -52,28 +52,10 @@ int	ft_conversion_s(t_flags *flags, va_list *args, t_buffer *buffer)
 		nb_spaces = 0;
 	else
 		nb_spaces = flags->width - ft_strlen(c);
-	if (flags->precision == -1 || flags->precision > (int)ft_strlen(c))
-	{
-		if (!flags->dash)
-			ft_buffer_putnchar(buffer, (flags->zero) ? '0' : ' ', nb_spaces);
-		ft_buffer_putstr(buffer, c);
-		if (flags->dash)
-			ft_buffer_putnchar(buffer, ' ', nb_spaces);
-	}
-	else
-	{
-		if (flags->width != 0)
-			nb_spaces += ft_strlen(c) - flags->precision;
-		if (!flags->dash)
-			ft_buffer_putnchar(buffer, ' ', nb_spaces);
-		ft_buffer_putnstr(buffer, c, flags->precision);
-		if (flags->dash)
-			ft_buffer_putnchar(buffer, ' ', nb_spaces);
-	}
-	return (1);
+	return (ft_conversion_s_pad(c, buffer, flags, nb_spaces));
 }
 
-int	ft_conversion_cc(t_flags *flags, va_list *args, t_buffer *buffer)
+int			ft_conversion_cc(t_flags *flags, va_list *args, t_buffer *buffer)
 {
 	wchar_t	c;
 	int		nb_spaces;
@@ -91,7 +73,7 @@ int	ft_conversion_cc(t_flags *flags, va_list *args, t_buffer *buffer)
 	return (1);
 }
 
-int	ft_conversion_cs(t_flags *flags, va_list *args, t_buffer *buffer)
+int			ft_conversion_cs(t_flags *flags, va_list *args, t_buffer *buffer)
 {
 	wchar_t	*c;
 	int		nb_spaces;
@@ -113,22 +95,5 @@ int	ft_conversion_cs(t_flags *flags, va_list *args, t_buffer *buffer)
 		return (1);
 	}
 	nb_spaces = flags->width - ft_unicode_count_bytes(c);
-	if (flags->precision != -1)
-		nb_spaces += ft_unicode_count_bytes(c) -
-			ft_unicode_count_nbytes(c, flags->precision);
-	if (!flags->dash)
-		ft_buffer_putnchar(buffer, (flags->zero) ? '0' : ' ', nb_spaces);
-	if (flags->precision != -1)
-	{
-		if (ft_putunicode_nstr(c, buffer, flags->precision) == -1)
-			return (-1);
-	}
-	else
-	{
-		if (ft_putunicode_str(c, buffer) == -1)
-			return (-1);
-	}
-	if (flags->dash)
-		ft_buffer_putnchar(buffer, ' ', nb_spaces);
-	return (0);
+	return (ft_conversion_cs_pad(nb_spaces, flags, c, buffer));
 }

@@ -6,7 +6,7 @@
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 18:51:34 by msteffen          #+#    #+#             */
-/*   Updated: 2018/01/17 15:05:37 by msteffen         ###   ########.fr       */
+/*   Updated: 2018/02/05 10:11:00 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int			ft_buffer_putchar(t_buffer *buffer, char c)
 {
-	realloc_buffer(buffer, 10);
+	if (realloc_buffer(buffer, 10) == 0)
+		return (0);
 	buffer->buffer_str[buffer->len] = c;
 	buffer->buffer_str[buffer->len + 1] = 0;
 	buffer->len += 1;

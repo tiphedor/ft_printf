@@ -6,7 +6,7 @@
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 12:20:14 by msteffen          #+#    #+#             */
-/*   Updated: 2018/01/15 18:53:15 by msteffen         ###   ########.fr       */
+/*   Updated: 2018/02/05 11:29:08 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "ft_casts.h"
 # include "ft_buffer_operations.h"
+# include "ft_conversions_x_tools.h"
+# include "ft_conversions_cx_tools.h"
 
 int ft_conversion_x(t_flags *flags, va_list *args, t_buffer *buffer);
 int ft_conversion_cx(t_flags *flags, va_list *args, t_buffer *buffer);

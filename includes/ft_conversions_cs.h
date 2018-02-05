@@ -6,7 +6,7 @@
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 12:25:56 by msteffen          #+#    #+#             */
-/*   Updated: 2018/01/15 19:08:48 by msteffen         ###   ########.fr       */
+/*   Updated: 2018/02/05 10:22:30 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "ft_flags.h"
 # include "ft_buffer.h"
 # include "ft_casts.h"
+# include "ft_conversions_cs_pad.h"
 # include "ft_unicode_print.h"
 # include <stdarg.h>
 

@@ -6,7 +6,7 @@
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 13:58:21 by msteffen          #+#    #+#             */
-/*   Updated: 2018/01/16 09:43:19 by msteffen         ###   ########.fr       */
+/*   Updated: 2018/02/05 10:21:06 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ int	ft_printf_tofd(const char *format, int fd, va_list *args)
 	unsigned int	f_len;
 
 	i = 0;
-	buffer = buffer_init();
+	if ((buffer = buffer_init()) == 0)
+		return (-1);
 	ft_init_conversions(conversions);
 	f_len = ft_strlen(format);
 	while (i < f_len)

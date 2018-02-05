@@ -6,7 +6,7 @@
 #    By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/06 14:52:30 by msteffen          #+#    #+#              #
-#    Updated: 2018/01/16 09:47:07 by msteffen         ###   ########.fr        #
+#    Updated: 2018/02/05 11:28:57 by msteffen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,10 +17,10 @@ LD					=	ar
 SRC_DIR				=	src
 INCLUDE_DIR			=	includes
 
-CFLAGS				=	-c -Wall -Wextra -Werror -I libft -I $(INCLUDE_DIR)
+CFLAGS				=	-g -c -Wall -Wextra -Werror -I libft -I $(INCLUDE_DIR)
 LDFLAGS				=	rcs
 
-SRC 				=	ft_buffer_operations.c ft_unicode_conversions.c ft_unicode_print.c ft_unicode_tools.c ft_conversions_p.c ft_conversions_cs.c ft_conversions_ox.c ft_casts.c ft_conversions_diu.c nb_utils.c ft_buffer.c ft_flags.c ft_conversions.c ft_printf.c
+SRC 				=	ft_conversions_cx_tools.c ft_conversions_x_tools.c ft_conversions_cs_pad.c ft_buffer_operations.c ft_unicode_conversions.c ft_unicode_print.c ft_unicode_tools.c ft_conversions_p.c ft_conversions_cs.c ft_conversions_ox.c ft_casts.c ft_conversions_diu.c nb_utils.c ft_buffer.c ft_flags.c ft_conversions.c ft_printf.c
 
 FT_SRC				= 	libft/src/ft_putnstr.c libft/src/ft_putnstr_fd.c libft/src/ft_putnchar_fd.c libft/src/ft_putnchar.c libft/src/ft_abs.c            libft/src/ft_isupper.c        libft/src/ft_putchar.c        libft/src/ft_strcmp.c         libft/src/ft_strnequ.c \
 						libft/src/ft_atoi.c           libft/src/ft_itoa.c           libft/src/ft_putchar_fd.c     libft/src/ft_strcpy.c         libft/src/ft_strnew.c \

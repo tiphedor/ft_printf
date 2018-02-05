@@ -6,7 +6,7 @@
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 11:40:30 by msteffen          #+#    #+#             */
-/*   Updated: 2018/01/15 19:00:46 by msteffen         ###   ########.fr       */
+/*   Updated: 2018/02/05 09:55:17 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,9 @@ char	*ft_itoau64_base(uint64_t nb, char *base)
 	char		*res;
 	uint64_t	nb_tmp;
 
-	i = 0;
 	nb_tmp = nb;
 	base_len = ft_strlen(base);
-	if (nb_tmp == 0)
-		i = 1;
+	i = (nb_tmp == 0) ? 1 : 0;
 	while (nb_tmp > 0)
 	{
 		i++;
