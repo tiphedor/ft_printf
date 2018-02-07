@@ -6,7 +6,7 @@
 /*   By: msteffen <msteffen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 14:19:59 by msteffen          #+#    #+#             */
-/*   Updated: 2018/02/05 10:19:54 by msteffen         ###   ########.fr       */
+/*   Updated: 2018/02/07 11:58:06 by msteffen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,17 +44,17 @@ int			realloc_buffer(t_buffer *buffer, int target_size)
 
 int			ft_dump_buffer(t_buffer *buffer, int fd)
 {
-	int i;
 	int ret;
 
-	i = 0;
-	while (i < buffer->len)
-	{
-		ft_putchar_fd(buffer->buffer_str[i], fd);
-		i++;
-	}
+	write(fd, buffer->buffer_str, buffer->len);
 	ret = buffer->len;
+	ft_destroy_buffer(buffer);
+	return (ret);
+}
+
+int			ft_destroy_buffer(t_buffer *buffer)
+{
 	free(buffer->buffer_str);
 	free(buffer);
-	return (ret);
+	return (-1);
 }
